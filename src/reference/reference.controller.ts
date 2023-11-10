@@ -8,27 +8,36 @@ export class ReferenceController {
   constructor(private readonly referenceService: ReferenceService) {}
 
   @Post()
-  create(@Body() createReferenceDto: CreateReferenceDto) {
-    return this.referenceService.create(createReferenceDto);
+  async createProduct(@Body() product:CreateReferenceDto) {
+    return await this.referenceService.createProduct(product)
   }
 
-  @Get()
-  findAll() {
-    return this.referenceService.findAll();
-  }
+
+
+  @Get("all")
+  async getProducts() {return await this.referenceService. getProducts()}
+
+
+
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.referenceService.findOne(+id);
-  }
+  async getProductById(@Param("id") id:string) {return await this.referenceService.getProductById(id)}
+
+
+
+
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateReferenceDto: UpdateReferenceDto) {
-    return this.referenceService.update(+id, updateReferenceDto);
-  }
+  async updateProductById(@Param("id") id:string, @Body() product:CreateReferenceDto) {return await this.referenceService.updateProductById(id, product)}
+
+
+
+
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.referenceService.remove(+id);
-  }
+  async deleteProductById(@Param("id") id:string) {return await this.referenceService.deleteProductById(id)}
+
+
+
+
 }
